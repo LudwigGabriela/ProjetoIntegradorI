@@ -1,0 +1,138 @@
+* {
+    font-family: 'Scope One', serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    background-color: #e0e0e0;
+}
+
+.cabecalho {
+    grid-area: cabecalho;
+    background-color: #512DA8;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0px 4px 9px -2px rgba(0, 0, 0, 0.75);
+    position: relative;
+}
+
+.barraLateral{
+    font-size: 30px;
+    cursor: pointer;
+    color: #03A9F4;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.pesquisa {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 5px 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+}
+
+.pesquisa > input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    padding: 5px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icons > a{
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.principal {
+    grid-area: principal;
+    height: calc(100vh - 240px);
+    background-color: #e0e0e0;
+    padding: 20px;
+}
+
+.conteudo {
+    position: relative;
+    height: 100%;
+    overflow-y: scroll;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.2);
+}
+
+.main {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.navegacao {
+    grid-area: navegacao;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.navegacao > .botoes a.voltar {
+    background-color: #d1c4e9;
+    color: white;
+}
+
+.navegacao > .botoes a {
+    text-decoration: none;
+    color: white;
+    font-weight: 300;
+    font-size: 20px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.livros {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.livro {
+    width: 80px;
+    height: 120px;
+    background-color: #d1c4e9;
+    border: 3px solid #4a148c;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
+}
+
+.rodape{
+    background-color: #512DA8;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+}
