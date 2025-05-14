@@ -7,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS\index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.rtl.min.css" integrity="sha384-q8+l9TmX3RaSz3HKGBmqP2u5MkgeN7HrfOJBLcTgZsQsbrx8WqqxdA5PuwUV9WIx" crossorigin="anonymous">
   <!-- Fonte Raleway -->
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,41 +25,56 @@
     }
 
     /* Menu lateral */
-    .menu {
+    .sidebar {
+      background-color: #678133;
       width: 220px;
-      background-color: #556B2F;
-      height: 100vh;
       color: white;
-      padding: 30px 20px;
+      padding: 20px;
     }
 
-    .menu h2 {
+    .sidebar h2 {
       font-size: 20px;
-      margin-bottom: 25px;
-      line-height: 1.3;
+      margin-bottom: 30px;
     }
 
-    .menu a {
+    .sidebar a {
       display: block;
-      margin: 10px 0;
       color: white;
       text-decoration: none;
+      padding: 8px 0;
       font-weight: bold;
     }
 
-    .menu a:hover {
-      text-decoration: underline;
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: white;
+      color: #678133;
+      padding-left: 10px;
+      border-radius: 4px;
+    }
+
+    .logout-btn {
+      margin-top: 40px;
+      background-color: red;
+      color: white;
+      padding: 8px;
+      border: none;
+      font-weight: bold;
+      border-radius: 6px;
+      width: 100%;
+      cursor: pointer;
     }
 
     .btn-sair {
+      margin-top: 40px;
       background-color: red;
       color: white;
-      padding: 10px 20px;
+      padding: 8px;
       border: none;
-      border-radius: 8px;
-      margin-top: 30px;
-      cursor: pointer;
       font-weight: bold;
+      border-radius: 6px;
+      width: 100%;
+      cursor: pointer;
     }
 
     /* Conteúdo principal */
@@ -154,14 +168,71 @@
     .acoes button:hover {
       opacity: 0.8;
     }
+
+    /* Novo destaque para o título da tela */
+    .titulo-secao {
+    font-size: 26px;
+    font-weight: 700;
+    color: #8B4513;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-left: 6px solid #8B4513;
+    padding-left: 12px;
+    }
+
+    /* Botão maior e com destaque visual */
+    form button {
+    background-color: #8B4513;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 28px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+    background-color: #a0522d;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: white;
+      color: #5A733A;
+      padding-left: 10px;
+      border-radius: 4px;
+    }
+
+    .logout-btn {
+      margin-top: 40px;
+      background-color: red;
+      color: white;
+      padding: 8px;
+      border: none;
+      font-weight: bold;
+      border-radius: 6px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #8B4513;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
   </style>
 </head>
 <body>
 
   <!-- Menu lateral -->
-  <div class="menu">
+  <div class="sidebar">
     <h2>Área do<br>Administrador</h2>
-    <a href="#">Ebooks</a>
+    <a href="#" class="active">Ebooks</a>
     <a href="usuarios.html">Usuários</a>
     <a href="assinaturas.html">Assinaturas</a>
     <a href="pedidosEtransacoes.html">Pedidos e Transações</a>
@@ -177,7 +248,8 @@
       <h1><i>READ</i> <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="book" width="24"> <i>WISE</i></h1>
     </div>
 
-    <h2>Cadastrar ebook</h2>
+    <h2 class="titulo-secao">Cadastrar eBook</h2>
+
 
     <form id="formEbook">
       <input type="text" id="titulo" placeholder="Título do eBook" required>
