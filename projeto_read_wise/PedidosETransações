@@ -1,1 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área do Administrador - Pedidos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #5D7331;
+      color: white;
+      padding: 20px;
+      height: 100vh;
+      float: left;
+    }
+
+    .sidebar h3 {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      font-weight: 500;
+    }
+
+    .sidebar a.active {
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .sidebar .btn {
+      margin-top: 30px;
+      background-color: red;
+      border: none;
+      font-weight: bold;
+      width: 100%;
+    }
+
+    .content {
+      margin-left: 220px;
+      padding: 30px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      font-family: 'Scope One', serif;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .header img {
+      margin-left: 10px;
+    }
+
+    .table thead th {
+      background-color: #ccc;
+      text-align: center;
+    }
+
+    .table td, .table th {
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    h5 {
+      margin-top: 30px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h3>Área do Administrador</h3>
+    <a href="#">Ebooks</a>
+    <a href="#">Usuários</a>
+    <a href="#">Assinaturas</a>
+    <a href="#" class="active">Pedidos e Transações</a>
+    <a href="#">Configurações</a>
+    <a href="#">Promoções da Semana</a>
+    <a href="#">Sugestões de Assinaturas</a>
+    <button class="btn btn-danger">Sair</button>
+  </div>
+
+  <div class="content">
+    <div class="header">
+      <div><em>READ</em> 📖 <strong>WISE</strong></div>
+    </div>
+
+    <h5>Pedidos e Transações</h5>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID Pedido</th>
+          <th>Usuário</th>
+          <th>Item</th>
+          <th>Valor</th>
+          <th>Tipo</th>
+          <th>Status</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>#1023</td>
+          <td>Usuário 1</td>
+          <td>eBook: “Divinos Rivais”</td>
+          <td>R$</td>
+          <td>Compra única</td>
+          <td>Pago</td>
+          <td>05/05/2025</td>
+        </tr>
+        <tr>
+          <td>#1024</td>
+          <td>Usuário 3</td>
+          <td>Assinatura: Plano Romance</td>
+          <td>R$</td>
+          <td>Assinatura mensal</td>
+          <td>Pendente</td>
+          <td>03/05/2025</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
 
