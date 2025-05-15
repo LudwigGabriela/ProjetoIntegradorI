@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho</title>
+
+  <!-- Fonte Raleway -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap RTL -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.rtl.min.css" integrity="sha384-q8+l9TmX3RaSz3HKGBmqP2u5MkgeN7HrfOJBLcTgZsQsbrx8WqqxdA5PuwUV9WIx" crossorigin="anonymous">
+
+  <!-- Tailwind via CDN (opcional para utilitários adicionais) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background-image: url('fundo.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Raleway', sans-serif;
+    }
+  </style>
+</head>
+<body class="text-black">
+
+  <!-- Topo com título e usuário -->
+  <div class="flex justify-between items-center px-6 py-4">
+    <h1 class="text-2xl font-bold bg-green-300 px-4 py-2 rounded-full shadow-md">Carrinho</h1>
+    <div class="flex items-center gap-4">
+      <span class="text-black font-semibold">Usuário</span>
+      <img src="usuario.jpg" alt="Foto do usuário" class="w-8 h-8 rounded-full object-cover shadow">
+    </div>
+  </div>
+    <!-- Lista de livros -->
+    <div class="w-3/4 grid grid-cols-3 gap-6 ml-10 mt-4">
+      <div class="flex flex-col items-center">
+        <div class="w-20 h-32 bg-red-500 rounded"></div>
+        <span class="mt-2 font-semibold">LIVRO 1</span>
+        <button class="text-danger mt-1"><i class="bi bi-trash"></i></button>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="w-20 h-32 bg-blue-400 rounded"></div>
+        <span class="mt-2 font-semibold">LIVRO 1</span>
+        <button class="text-danger mt-1"><i class="bi bi-trash"></i></button>
+      </div>
+      <div class="flex flex-col items-center justify-center text-center">
+        <button class="bg-danger text-white rounded-circle w-10 h-10 mb-2">+</button>
+        <span class="font-semibold">ADICIONAR ITENS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé com botões -->
+  <div class="flex justify-between items-center px-6 mt-10">
+    <button class="text-primary d-flex align-items-center gap-2">
+      <span class="fs-5">&#8592;</span> CONTINUAR COMPRANDO
+    </button>
+    <div class="d-flex gap-4">
+      <div class="d-flex align-items-center gap-2">
+        <i class="bi bi-question-circle-fill"></i>
+        <span>AJUDA</span>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <i class="bi bi-telephone-fill"></i>
+        <span>SAC</span>
+      </div>
+    </div>
+    <button class="text-success d-flex align-items-center gap-2">
+      FINALIZAR PEDIDO <span class="bg-success text-white rounded-circle px-2">&#10004;</span>
+    </button>
+  </div>
+
+  <!-- Sair botão -->
+  <div class="position-absolute bottom-4 end-0 me-5 mb-4 d-flex align-items-center gap-2">
+    <button class="text-danger fw-bold fs-5">SAIR</button>
+    <div class="border border-2 border-danger rounded-circle d-flex align-items-center justify-content-center text-danger" style="width: 24px; height: 24px;">⏻</div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
+
+  <!-- Ícones Bootstrap (opcional) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</body>
+</html>
