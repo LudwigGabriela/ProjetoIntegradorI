@@ -14,6 +14,9 @@
   <!-- Tailwind via CDN (opcional para utilitários adicionais) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Ícones Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
   <style>
     body {
       background-image: url('fundo.jpg');
@@ -22,41 +25,74 @@
       background-repeat: no-repeat;
       font-family: 'Raleway', sans-serif;
     }
+
+    .cabecalho {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #8B4513;
+      padding-bottom: 10px;
+      margin: 20px 10px;
+    }
+
+    .titulo-site {
+      font-style: italic;
+      font-weight: bold;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+    }
+
+    .titulo-site img {
+      width: 24px;
+      height: 24px;
+    }
   </style>
 </head>
 <body class="text-black">
 
+  <!-- Cabeçalho -->
+  <div class="cabecalho">
+    <h1 class="titulo-site">
+      <i>READ</i>
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="book">
+      <i>WISE</i>
+    </h1>
+  </div>
+
   <!-- Topo com título e usuário -->
   <div class="flex justify-between items-center px-6 py-4">
-    <h1 class="text-2xl font-bold bg-green-300 px-4 py-2 rounded-full shadow-md">Carrinho</h1>
+    <h1 class="text-2xl font-bold bg-[#678133] px-4 py-2 rounded-full shadow-md text-white">Carrinho</h1>
     <div class="flex items-center gap-4">
       <span class="text-black font-semibold">Usuário</span>
       <img src="usuario.jpg" alt="Foto do usuário" class="w-8 h-8 rounded-full object-cover shadow">
     </div>
   </div>
-    <!-- Lista de livros -->
-    <div class="w-3/4 grid grid-cols-3 gap-6 ml-10 mt-4">
-      <div class="flex flex-col items-center">
-        <div class="w-20 h-32 bg-red-500 rounded"></div>
-        <span class="mt-2 font-semibold">LIVRO 1</span>
-        <button class="text-danger mt-1"><i class="bi bi-trash"></i></button>
-      </div>
-      <div class="flex flex-col items-center">
-        <div class="w-20 h-32 bg-blue-400 rounded"></div>
-        <span class="mt-2 font-semibold">LIVRO 1</span>
-        <button class="text-danger mt-1"><i class="bi bi-trash"></i></button>
-      </div>
-      <div class="flex flex-col items-center justify-center text-center">
-        <button class="bg-danger text-white rounded-circle w-10 h-10 mb-2">+</button>
-        <span class="font-semibold">ADICIONAR ITENS</span>
-      </div>
+
+  <!-- Lista de livros -->
+  <div class="w-3/4 grid grid-cols-3 gap-6 ml-10 mt-4">
+    <div class="flex flex-col items-center">
+      <div class="w-20 h-32 bg-red-500 rounded"></div>
+      <span class="mt-2 font-semibold">LIVRO 1</span>
+      <button class="text-danger mt-1"><i class="bi bi-trash"></i></button>
+    </div>
+    <div class="flex flex-col items-center">
+      <div class="w-20 h-32 bg-blue-400 rounded"></div>
+      <span class="mt-2 font-semibold">LIVRO 1</span>
+      <button class="text-danger mt-1"><i class="bi bi-trash"></i></button>
+    </div>
+    <div class="flex flex-col items-center justify-center text-center">
+      <button class="bg-danger text-white rounded-circle w-10 h-10 mb-2">+</button>
+      <span class="font-semibold">ADICIONAR ITENS</span>
     </div>
   </div>
 
   <!-- Rodapé com botões -->
   <div class="flex justify-between items-center px-6 mt-10">
     <button class="text-primary d-flex align-items-center gap-2">
-      <span class="fs-5">&#8592;</span> CONTINUAR COMPRANDO
+        <a href="Catalogo.html"><span class="fs-5">&#8592;</span> CONTINUAR COMPRANDO</a>
     </button>
     <div class="d-flex gap-4">
       <div class="d-flex align-items-center gap-2">
@@ -69,13 +105,14 @@
       </div>
     </div>
     <button class="text-success d-flex align-items-center gap-2">
-      FINALIZAR PEDIDO <span class="bg-success text-white rounded-circle px-2">&#10004;</span>
+        <a href="pagamento.html">FINALIZAR PEDIDO <span class="bg-success text-white rounded-circle px-2">&#10004;</span></a>
     </button>
   </div>
 
   <!-- Sair botão -->
   <div class="position-absolute bottom-4 end-0 me-5 mb-4 d-flex align-items-center gap-2">
-    <button class="text-danger fw-bold fs-5">SAIR</button>
+    <a href="Catalogo.html"><button class="text-danger fw-bold fs-5">SAIR</button></a>
+    
     <div class="border border-2 border-danger rounded-circle d-flex align-items-center justify-content-center text-danger" style="width: 24px; height: 24px;">⏻</div>
   </div>
 
@@ -83,7 +120,5 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
 
-  <!-- Ícones Bootstrap (opcional) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </body>
 </html>
