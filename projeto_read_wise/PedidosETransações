@@ -8,22 +8,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
+    * {
+      box-sizing: border-box;
       font-family: 'Raleway', sans-serif;
     }
 
-    .sidebar {
-      width: 220px;
-      background-color: #5D7331;
-      color: white;
-      padding: 20px;
+    body {
+      margin: 0;
+      display: flex;
       height: 100vh;
-      float: left;
     }
 
-    .sidebar h3 {
-      font-size: 1.2rem;
+    /* Menu lateral */
+    .sidebar {
+      background-color: #678133;
+      width: 220px;
+      color: white;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
       margin-bottom: 30px;
     }
 
@@ -31,78 +36,178 @@
       display: block;
       color: white;
       text-decoration: none;
-      margin: 10px 0;
-      font-weight: 500;
+      padding: 8px 0;
+      font-weight: bold;
     }
 
+    .sidebar a:hover,
     .sidebar a.active {
-      font-weight: 700;
-      text-decoration: underline;
+      background-color: white;
+      color: #678133;
+      padding-left: 10px;
+      border-radius: 4px;
     }
 
-    .sidebar .btn {
-      margin-top: 30px;
+    .logout-btn {
+      margin-top: 40px;
       background-color: red;
+      color: white;
+      padding: 8px;
       border: none;
       font-weight: bold;
+      border-radius: 6px;
       width: 100%;
+      cursor: pointer;
     }
 
+    /* Conteúdo */
     .content {
-      margin-left: 220px;
+      flex: 1;
       padding: 30px;
+      background-color: #fff;
     }
 
-    .header {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      font-family: 'Scope One', serif;
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-
-    .header img {
-      margin-left: 10px;
-    }
-
-    .table thead th {
-      background-color: #ccc;
-      text-align: center;
-    }
-
-    .table td, .table th {
-      vertical-align: middle;
-      text-align: center;
-    }
-
-    h5 {
-      margin-top: 30px;
+    .content h1 {
+      font-style: italic;
       font-weight: 700;
     }
+
+    .content h1 span {
+      font-weight: 400;
+    }
+
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .logo span {
+      font-style: italic;
+    }
+
+    .title {
+      font-size: 26px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .form-container {
+      background-color: #d8d2d2;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 900px;
+      margin-bottom: 40px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-container input,
+    .form-container select {
+      flex: 1;
+      padding: 14px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+
+    .form-container button {
+      background-color: #8B4513;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* Tabela */
+    .pedidos-transacoes {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #f2f2f2;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .pedidos-transacoes th,
+    .pedidos-transacoes td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    .pedidos-transacoes thead {
+      background-color: #b1aeae;
+    }
+
+    .pedidos-transacoes tr:not(:first-child):hover {
+      background-color: #ddd;
+    }
+
+    .actions button {
+      margin: 0 4px;
+      padding: 6px 10px;
+      font-size: 13px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .edit-btn {
+      background-color: #bbb;
+    }
+
+    .delete-btn {
+      background-color: #555;
+      color: white;
+    }
+
+    .titulo-secao {
+    font-size: 26px;
+    font-weight: 700;
+    color: #8B4513;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-left: 6px solid #8B4513;
+    padding-left: 12px;
+    }
+
+  .header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    border-bottom: 2px solid #8B4513;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
   </style>
 </head>
 <body>
 
   <div class="sidebar">
-    <h3>Área do Administrador</h3>
-    <a href="#">Ebooks</a>
-    <a href="#">Usuários</a>
-    <a href="#">Assinaturas</a>
+    <h2>Área do Administrador</h2>
+    <a href="ebooks.html">Ebooks</a>
+    <a href="usuarios.html">Usuários</a>
+    <a href="assinaturas.html">Assinaturas</a>
     <a href="#" class="active">Pedidos e Transações</a>
-    <a href="#">Configurações</a>
-    <a href="#">Promoções da Semana</a>
-    <a href="#">Sugestões de Assinaturas</a>
-    <button class="btn btn-danger">Sair</button>
+    <a href="configuracoes.html">Configurações</a>
+    <a href="promocoesSemana.html">Promoções da Semana</a>
+    <a href="sugestoesAssinatura.html">Sugestões de Assinaturas</a>
+    <button class="logout-btn">Sair</button>
   </div>
 
   <div class="content">
     <div class="header">
-      <div><em>READ</em> 📖 <strong>WISE</strong></div>
+      <h1><i>READ</i> <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="book" width="24"> <i>WISE</i></h1>
     </div>
 
-    <h5>Pedidos e Transações</h5>
-    <table class="table table-bordered">
+    <h2 class="titulo-secao">Pedidos e Transações</h2>
+    <table class="pedidos-transacoes">
       <thead>
         <tr>
           <th>ID Pedido</th>
@@ -142,4 +247,3 @@
 
 </body>
 </html>
-
