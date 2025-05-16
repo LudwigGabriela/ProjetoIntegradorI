@@ -1,5 +1,11 @@
-.scope-one-regular {
-    font-family: "Raleway", serif;
+h1 {
+    font-style: bolder;
+    font-size: 50px;
+    font-weight: 700;
+  }
+
+* {
+    font-family: "Raleway", sans-serif;
     font-weight: 400;
     font-style: normal;
   }
@@ -11,7 +17,7 @@
   }
 
   body {
-    font-family: "Raleway", serif;
+    font-family: "Raleway", sans-serif;
   }
 
   header {
@@ -54,7 +60,7 @@
   main {
     display: flex;
     height: 100vh;
-    background-image: url("imagens/Design2\ projeto\ .jpg");
+    background-image: url("fundo.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -72,10 +78,20 @@
   }
 
   .esquerda h1 {
-    font-size: 28px;
+    font-size: 50px;
+    font-weight: 400;
     font-style: italic;
-    margin-bottom: 30px;
   }
+
+  h1 {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 
   .barra-pesquisa input {
     border: none;
@@ -159,4 +175,8 @@
     border-radius: 20px;
     font-size: 18px;
     text-decoration: none;
+}
+
+.esquerda .inicio .h1 {
+  font-style: italic;
 }
