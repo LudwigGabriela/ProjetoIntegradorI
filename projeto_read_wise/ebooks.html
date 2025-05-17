@@ -24,7 +24,6 @@
       background-color: #fff;
     }
 
-    /* Menu lateral */
     .sidebar {
       background-color: #678133;
       width: 220px;
@@ -48,7 +47,7 @@
     .sidebar a:hover,
     .sidebar a.active {
       background-color: white;
-      color: #678133;
+      color: #5A733A;
       padding-left: 10px;
       border-radius: 4px;
     }
@@ -65,7 +64,6 @@
       cursor: pointer;
     }
 
-    /* Conteúdo principal */
     .conteudo {
       flex: 1;
       padding: 30px;
@@ -75,6 +73,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 2px solid #8B4513;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     .cabecalho h1 {
@@ -82,8 +83,13 @@
       font-weight: 700;
     }
 
-    .cabecalho h1 span {
-      font-weight: 400;
+    .titulo-secao {
+      font-size: 26px;
+      font-weight: 700;
+      color: #8B4513;
+      margin: 30px 0 20px;
+      border-left: 6px solid #8B4513;
+      padding-left: 12px;
     }
 
     form {
@@ -115,6 +121,11 @@
       background-color: #8B4513;
       color: white;
       cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 12px 28px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
     }
 
     form button:hover {
@@ -156,62 +167,6 @@
     .acoes button:hover {
       opacity: 0.8;
     }
-
-    /* Novo destaque para o título da tela */
-    .titulo-secao {
-    font-size: 26px;
-    font-weight: 700;
-    color: #8B4513;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    border-left: 6px solid #8B4513;
-    padding-left: 12px;
-    }
-
-    /* Botão maior e com destaque visual */
-    form button {
-    background-color: #8B4513;
-    color: white;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 12px 28px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
-    }
-
-    form button:hover {
-    background-color: #a0522d;
-    }
-
-    .sidebar a:hover,
-    .sidebar a.active {
-      background-color: white;
-      color: #5A733A;
-      padding-left: 10px;
-      border-radius: 4px;
-    }
-
-    .logout-btn {
-      margin-top: 40px;
-      background-color: red;
-      color: white;
-      padding: 8px;
-      border: none;
-      font-weight: bold;
-      border-radius: 6px;
-      width: 100%;
-      cursor: pointer;
-    }
-
-    .cabecalho {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #8B4513;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-  }
 
   </style>
 </head>
