@@ -83,11 +83,26 @@
     }
 
     .btn-voltar {
-    background-color: #a0522d; /* cor diferente, exemplo: marrom */
+    background-color: gray; /* cor diferente, exemplo: marrom */
     }
 
     .btn-voltar:hover {
-    background-color: #8b4513;
+    background-color: rgb(100, 100, 100);
+    }
+
+    .btn-pedidos:hover {
+    background-color: #8a3d06;
+    }
+
+    .btn-pedidos{
+        background-color: #8B4513;
+    }
+
+    .botoes-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
     }
 
 </style>
@@ -100,27 +115,30 @@
     </div>
 
   <div class="container">
-    <h1>Minha Conta</h1>
+        <h1>Minha Conta</h1>
+        
+        <div class="info">
+        <p><strong>Nome:</strong> <span id="user-name">Carregando...</span></p>
+        <p><strong>Email:</strong> <span id="user-email">Carregando...</span></p>
+        <p><strong>Status de Assinatura:</strong> <span id="user-status">Carregando...</span></p>
+        <a href="Planoss.html"><button id="subscribe-btn">Tornar-se Assinante</button></a>
+        </div>
+
+        <div class="library">
+        <h2>Minha Biblioteca</h2>
+        <ul id="book-list">
+            <li>Carregando livros...</li>
+        </ul>
+        </div>
+
+        <div class="botoes-container">
+            <a href="Biblioteca.html"><button class="btn-voltar">Voltar</button></a>
+            <a href="pedidos_status.html"><button class="btn-pedidos">Meus pedidos</button></a>
+        </div>
+  </div>
     
-    <div class="info">
-      <p><strong>Nome:</strong> <span id="user-name">Carregando...</span></p>
-      <p><strong>Email:</strong> <span id="user-email">Carregando...</span></p>
-      <p><strong>Status de Assinatura:</strong> <span id="user-status">Carregando...</span></p>
-      <a href="Planoss.html"><button id="subscribe-btn">Tornar-se Assinante</button></a>
-    </div>
 
-    <div class="library">
-      <h2>Minha Biblioteca</h2>
-      <ul id="book-list">
-        <li>Carregando livros...</li>
-      </ul>
-    </div>
-  </div>
   
-
-  <div>
-    <a href="Biblioteca.html"><button class="btn-voltar">Voltar</button></a>
-  </div>
 
 <script>
     // Simulando dados do usuário (futuramente você pode puxar via API)
