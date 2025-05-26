@@ -3,7 +3,7 @@
 $host = "127.0.0.1:3306";
 $usuario = "root";
 $senha = "root";
-$banco = "Read Wise";
+$banco = "readwise";
 
 $conn = new mysqli($host, $usuario, $senha, $banco);
 
