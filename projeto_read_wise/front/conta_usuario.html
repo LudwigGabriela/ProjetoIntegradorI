@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.rtl.min.css" integrity="sha384-q8+l9TmX3RaSz3HKGBmqP2u5MkgeN7HrfOJBLcTgZsQsbrx8WqqxdA5PuwUV9WIx" crossorigin="anonymous">
+  <title>Minha Conta - Usuário</title>
+
+<style>
+    .cabecalho {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #8B4513;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .cabecalho h1 {
+      font-style: italic;
+      font-weight: bold;
+      color: black;
+    }
+
+    body {
+    font-family: 'Raleway', sans-serif;
+    background: #fef6f9;
+    color: #333;
+    padding: 20px;
+    }
+
+    .container {
+    max-width: 500px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+    color: #8B4513;
+    text-align: center;
+    }
+
+    .info p {
+    margin: 10px 0;
+    }
+
+    button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 15px;
+    border: none;
+    background: #678133;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    }
+
+    button:hover {
+    background: #5a7327;
+    }
+
+    ul {
+    list-style-type: none;
+    padding: 0;
+    }
+
+    ul li {
+    background: #eee;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 6px;
+    }
+
+    a {
+    text-decoration: none;
+    }
+
+    .btn-voltar {
+    background-color: gray; /* cor diferente, exemplo: marrom */
+    }
+
+    .btn-voltar:hover {
+    background-color: rgb(100, 100, 100);
+    }
+
+    .btn-pedidos:hover {
+    background-color: #8a3d06;
+    }
+
+    .btn-pedidos{
+        background-color: #8B4513;
+    }
+
+    .botoes-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+</style>
+
+</head>
+<body>
+
+    <div class="cabecalho">
+      <h1><i>READ</i> <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="book" width="24"> <i>WISE</i></h1>
+    </div>
+
+  <div class="container">
+        <h1>Minha Conta</h1>
+        
+        <div class="info">
+        <p><strong>Nome:</strong> <span id="user-name">Carregando...</span></p>
+        <p><strong>Email:</strong> <span id="user-email">Carregando...</span></p>
+        <p><strong>Status de Assinatura:</strong> <span id="user-status">Carregando...</span></p>
+        <a href="Planoss.html"><button id="subscribe-btn">Tornar-se Assinante</button></a>
+        </div>
+
+        <div class="library">
+        <h2>Minha Biblioteca</h2>
+        <ul id="book-list">
+            <li>Carregando livros...</li>
+        </ul>
+        </div>
+
+        <div class="botoes-container">
+            <a href="Biblioteca.html"><button class="btn-voltar">Voltar</button></a>
+            <a href="pedidos_status.html"><button class="btn-pedidos">Meus pedidos</button></a>
+        </div>
+  </div>
+    
+
+  
+
+<script>
+    // Simulando dados do usuário (futuramente você pode puxar via API)
+    const userData = {
+    nome: "Gabriela Moraes",
+    email: "gabi@email.com",
+    assinante: false,
+    livrosComprados: [
+        "É Assim que Acaba",
+        "Divinos Rivais",
+        "Os crimes ABC"
+    ]
+    };
+
+    // Preencher dados na página
+    document.getElementById("user-name").textContent = userData.nome;
+    document.getElementById("user-email").textContent = userData.email;
+    document.getElementById("user-status").textContent = userData.assinante ? "Assinante" : "Não assinante";
+
+    const bookList = document.getElementById("book-list");
+    bookList.innerHTML = "";
+
+    userData.livrosComprados.forEach(livro => {
+    const li = document.createElement("li");
+    li.textContent = livro;
+    bookList.appendChild(li);
+    });
+
+</script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
+</body>
+</html>

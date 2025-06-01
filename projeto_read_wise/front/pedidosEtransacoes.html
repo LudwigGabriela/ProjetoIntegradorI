@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área do Administrador - Pedidos e Transações</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      background-color: #678133;
+      width: 220px;
+      color: white;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 8px 0;
+      font-weight: bold;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: white;
+      color: #678133;
+      padding-left: 10px;
+      border-radius: 4px;
+    }
+
+    .logout-btn {
+      margin-top: 40px;
+      background-color: red;
+      color: white;
+      padding: 8px;
+      border: none;
+      font-weight: bold;
+      border-radius: 6px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .content {
+      flex: 1;
+      padding: 30px;
+      background-color: #fff;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #8B4513;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .content h1 {
+      font-style: italic;
+      font-weight: 700;
+    }
+
+    .titulo-secao {
+      font-size: 26px;
+      font-weight: 700;
+      color: #8B4513;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      border-left: 6px solid #8B4513;
+      padding-left: 12px;
+    }
+
+    .pedidos-transacoes {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #f2f2f2;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .pedidos-transacoes th,
+    .pedidos-transacoes td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    .pedidos-transacoes thead {
+      background-color: #b1aeae;
+    }
+
+    .pedidos-transacoes tr:not(:first-child):hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Área do Administrador</h2>
+    <a href="ebooks.html">Ebooks</a>
+    <a href="usuarios.html">Usuários</a>
+    <a href="assinaturas.html">Assinaturas</a>
+    <a href="#" class="active">Pedidos e Transações</a>
+    <a href="configuracoes.html">Configurações</a>
+    <a href="promocoesSemana.html">Promoções da Semana</a>
+    <a href="sugestoesAssinatura.html">Sugestões de Assinaturas</a>
+    <button class="logout-btn">Sair</button>
+  </div>
+
+  <div class="content">
+    <div class="header">
+      <h1><i>READ</i> <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="book" width="24"> <i>WISE</i></h1>
+    </div>
+
+    <h2 class="titulo-secao">Pedidos e Transações</h2>
+    <table class="pedidos-transacoes">
+      <thead>
+        <tr>
+          <th>ID Pedido</th>
+          <th>Usuário</th>
+          <th>Item</th>
+          <th>Valor</th>
+          <th>Tipo</th>
+          <th>Status</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>#1023</td>
+          <td>Usuário 1</td>
+          <td>eBook: “Divinos Rivais”</td>
+          <td>R$</td>
+          <td>Compra única</td>
+          <td>Pago</td>
+          <td>05/05/2025</td>
+        </tr>
+        <tr>
+          <td>#1024</td>
+          <td>Usuário 3</td>
+          <td>Assinatura: Plano Romance</td>
+          <td>R$</td>
+          <td>Assinatura mensal</td>
+          <td>Pendente</td>
+          <td>03/05/2025</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
