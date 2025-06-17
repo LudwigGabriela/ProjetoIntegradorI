@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from readWise.views import Index, Catalogo, Biblioteca, Planos, Entrar, Questionario, Carrinho, ContaUsuario, Pedidos, Login, Cadastro, Adm_index, CadastroEbooks, CadastroUsuarios, CadastroAssinaturas, PedidosETransacoes, Configuracoes, SugestoesAssinatura, Promocoes
+from readWise.views import Index, Catalogo, Biblioteca, Planos, Entrar, Questionario, Carrinho, ContaUsuario, Pedidos, Login, Cadastro, Adm_index, CadastroEbooks, CadastroUsuarios, CadastroAssinaturas, PedidosETransacoes, Configuracoes, SugestoesAssinatura, Promocoes, Pagamento, Logout
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -39,5 +39,7 @@ urlpatterns = [
     path("pedidosEtransacoes", PedidosETransacoes, name='pedidosEtransacoes'),
     path("configuracoes", Configuracoes, name='configuracoes'),
     path("promocoes", Promocoes, name='promocoes'),
-    path("sugestoesAssinatura", SugestoesAssinatura, name='sugestoesAssinatura')
+    path("sugestoesAssinatura", SugestoesAssinatura, name='sugestoesAssinatura'),
+    path("pagamento", Pagamento, name='pagamento'),
+    path("logout", Logout, name='logout'),
 ]

@@ -125,14 +125,18 @@
                     <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                 </svg>
             <h2>Cadastro</h2>
-            <input type="text" placeholder="Nome Completo">
-            <input type="email" placeholder="email">
-            <input type="password" placeholder="senha">
-            <input type="password" placeholder="confirmação de senha">
-            <div class="botoes">
-                <a href="{% url 'index' %}" class="botao botao-login">Cadastre-se</a>
-                <a href="{% url 'entrar' %}" class="botao botao-cancelar">Cancelar</a>
-            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" name="nome" placeholder="Nome Completo" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="senha" placeholder="Senha" required>
+                <input type="password" name="confirmacao" placeholder="Confirmação de senha" required>
+                <div class="botoes">
+                    <button type="submit" class="botao botao-login">Cadastre-se</button>
+                    <a href="{% url 'login' %}" class="botao botao-cancelar">Cancelar</a>
+                </div>
+            </form>
+
         </div>
     </div>
 

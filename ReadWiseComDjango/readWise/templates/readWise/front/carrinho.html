@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -92,7 +93,7 @@
   <!-- Rodapé com botões -->
   <div class="flex justify-between items-center px-6 mt-10">
     <button class="text-primary d-flex align-items-center gap-2">
-        <a href="Catalogo.html"><span class="fs-5">&#8592;</span> CONTINUAR COMPRANDO</a>
+        <a href="{% url 'catalogo' %}"><span class="fs-5">&#8592;</span> CONTINUAR COMPRANDO</a>
     </button>
     <div class="d-flex gap-4">
       <div class="d-flex align-items-center gap-2">
@@ -105,13 +106,13 @@
       </div>
     </div>
     <button class="text-success d-flex align-items-center gap-2">
-        <a href="pagamento.html">FINALIZAR PEDIDO <span class="bg-success text-white rounded-circle px-2">&#10004;</span></a>
+        <a href="{% url 'pagamento' %}">FINALIZAR PEDIDO <span class="bg-success text-white rounded-circle px-2">&#10004;</span></a>
     </button>
   </div>
 
   <!-- Sair botão -->
   <div class="position-absolute bottom-4 end-0 me-5 mb-4 d-flex align-items-center gap-2">
-    <a href="Catalogo.html"><button class="text-danger fw-bold fs-5">SAIR</button></a>
+    <a href="{% url 'catalogo' %}"><button class="text-danger fw-bold fs-5">SAIR</button></a>
     
     <div class="border border-2 border-danger rounded-circle d-flex align-items-center justify-content-center text-danger" style="width: 24px; height: 24px;">⏻</div>
   </div>
