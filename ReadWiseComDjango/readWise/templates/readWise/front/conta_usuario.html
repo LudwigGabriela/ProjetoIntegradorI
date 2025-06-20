@@ -106,6 +106,30 @@
         margin-top: 20px;
     }
 
+    .library-small {
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.library-small h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #8B4513;
+}
+
+.book-list-small li {
+  background-color: #eee;
+  margin: 5px 0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+
 </style>
 
 </head>
@@ -118,57 +142,34 @@
   <div class="container">
         <h1>Minha Conta</h1>
         
-        <div class="info">
-        <p><strong>Nome:</strong> <span id="user-name">Carregando...</span></p>
-        <p><strong>Email:</strong> <span id="user-email">Carregando...</span></p>
-        <p><strong>Status de Assinatura:</strong> <span id="user-status">Carregando...</span></p>
+        <p><strong>Nome:</strong> {{ user.first_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Status de Assinatura:</strong> {% if perfil.assinante %}Assinante{% else %}Não assinante{% endif %}</p>
+
         <a href="{% url 'planos' %}"><button id="subscribe-btn">Tornar-se Assinante</button></a>
-        </div>
 
-        <div class="library">
-        <h2>Minha Biblioteca</h2>
-        <ul id="book-list">
-            <li>Carregando livros...</li>
-        </ul>
-        </div>
+          <div class="library-small">
+            <h3>Minha Biblioteca</h3>
+            <ul class="book-list-small">
+              {% if livros %}
+                {% for livro in livros %}
+                  <li>{{ livro.titulo }}</li>
+                {% endfor %}
+              {% else %}
+                <li>Você ainda não tem livros.</li>
+              {% endif %}
+            </ul>
+          </div>
 
-        <div class="botoes-container">
-            <a href="{% url 'biblioteca' %}"><button class="btn-voltar">Voltar</button></a>
-            <a href="{% url 'pedidos' %}"><button class="btn-pedidos">Meus pedidos</button></a>
+            <div class="botoes-container">
+              <a href="{% url 'biblioteca' %}"><button class="btn-voltar">Voltar</button></a>
+              <a href="{% url 'pedidos' %}"><button class="btn-pedidos">Meus pedidos</button></a>
+          </div>
         </div>
   </div>
     
 
-  
 
-<script>
-    // Simulando dados do usuário (futuramente você pode puxar via API)
-    const userData = {
-    nome: "Gabriela Moraes",
-    email: "gabi@email.com",
-    assinante: false,
-    livrosComprados: [
-        "É Assim que Acaba",
-        "Divinos Rivais",
-        "Os crimes ABC"
-    ]
-    };
-
-    // Preencher dados na página
-    document.getElementById("user-name").textContent = userData.nome;
-    document.getElementById("user-email").textContent = userData.email;
-    document.getElementById("user-status").textContent = userData.assinante ? "Assinante" : "Não assinante";
-
-    const bookList = document.getElementById("book-list");
-    bookList.innerHTML = "";
-
-    userData.livrosComprados.forEach(livro => {
-    const li = document.createElement("li");
-    li.textContent = livro;
-    bookList.appendChild(li);
-    });
-
-</script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

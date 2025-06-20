@@ -308,56 +308,125 @@
           <th>Ações</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Nome do ebook</td>
-          <td>R$</td>
-          <td>01/05 a 08/05</td>
-          <td><button class="delete-btn">Remover</button></td>
-        </tr>
-      </tbody>
+<tbody>
+  {% for p in promocoes %}
+  <tr data-id="{{ p.id }}">
+    <td>{{ p.ebook.titulo }}</td>
+    <td>R$ {{ p.preco_desconto }}</td>
+    <td>{{ p.data_inicio|date:"d/m" }} a {{ p.data_fim|date:"d/m" }}</td>
+    <td>
+      <button class="edit-btn">Editar</button>
+      <button class="delete-btn">Remover</button>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="4">Nenhuma promoção cadastrada.</td></tr>
+  {% endfor %}
+</tbody>
+
     </table>
   </div>
 
-  <script>
-    document.querySelector('.btn-add').addEventListener('click', function () {
-      const titulo = document.getElementById('titulo').value.trim();
-      const desconto = document.getElementById('desconto').value.trim();
-      const inicio = document.getElementById('inicio').value;
-      const fim = document.getElementById('fim').value;
+<script>
+document.querySelector('.btn-add').addEventListener('click', async function () {
+  const titulo = document.getElementById('titulo').value.trim();
+  const desconto = document.getElementById('desconto').value.trim();
+  const inicio = document.getElementById('inicio').value;
+  const fim = document.getElementById('fim').value;
 
-      if (!titulo || !desconto || !inicio || !fim) {
-        alert('Preencha todos os campos!');
-        return;
-      }
+  if (!titulo || !desconto || !inicio || !fim) {
+    alert('Preencha todos os campos!');
+    return;
+  }
 
-      const tabela = document.querySelector('.promocoesExistentes tbody');
-      const novaLinha = document.createElement('tr');
+  const res = await fetch('/api/promocoes/cadastrar/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': getCookie('csrftoken'),
+    },
+    body: JSON.stringify({ titulo, desconto, inicio, fim })
+  });
 
-      novaLinha.innerHTML = `
-        <td>${titulo}</td>
-        <td>R$ ${desconto}</td>
-        <td>${formatarData(inicio)} a ${formatarData(fim)}</td>
-        <td><button class="delete-btn">Remover</button></td>
-      `;
+  const data = await res.json();
+  if (data.status === "ok") {
+    const tabela = document.querySelector('.promocoesExistentes tbody');
+    const novaLinha = document.createElement('tr');
+    novaLinha.setAttribute('data-id', data.id);
+    novaLinha.innerHTML = `
+      <td>${titulo}</td>
+      <td>R$ ${desconto}</td>
+      <td>${formatarData(inicio)} a ${formatarData(fim)}</td>
+      <td>
+        <button class="edit-btn">Editar</button>
+        <button class="delete-btn">Remover</button>
+      </td>`;
+    tabela.appendChild(novaLinha);
+  } else {
+    alert("Erro: " + data.mensagem);
+  }
+});
 
-      tabela.appendChild(novaLinha);
+document.querySelector('.promocoesExistentes').addEventListener('click', function (e) {
+  const btn = e.target;
+  const linha = btn.closest('tr');
+  const id = linha.dataset.id;
 
-      novaLinha.querySelector('.delete-btn').addEventListener('click', function () {
-        novaLinha.remove();
-      });
-
-      document.getElementById('titulo').value = '';
-      document.getElementById('desconto').value = '';
-      document.getElementById('inicio').value = '';
-      document.getElementById('fim').value = '';
+  if (btn.classList.contains('delete-btn')) {
+    fetch(`/api/promocoes/${id}/remover/`, {
+      method: 'DELETE',
+      headers: { 'X-CSRFToken': getCookie('csrftoken') }
+    }).then(res => res.json()).then(data => {
+      if (data.status === 'ok') linha.remove();
+      else alert('Erro: ' + data.mensagem);
     });
+  }
 
-    function formatarData(data) {
-      const [ano, mes, dia] = data.split("-");
-      return `${dia}/${mes}`;
-    }
-  </script>
+  if (btn.classList.contains('edit-btn')) {
+    const titulo = linha.children[0].innerText;
+    const descontoAntigo = linha.children[1].innerText.replace('R$', '').trim();
+    const [inicio, fim] = linha.children[2].innerText.split(' a ').map(d => reverterData(d));
+
+    const novoDesconto = prompt(`Novo valor para ${titulo}`, descontoAntigo);
+    const novoInicio = prompt("Nova data de início (AAAA-MM-DD)", inicio);
+    const novoFim = prompt("Nova data de fim (AAAA-MM-DD)", fim);
+
+    fetch(`/api/promocoes/${id}/editar/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken')
+      },
+      body: JSON.stringify({ desconto: novoDesconto, inicio: novoInicio, fim: novoFim })
+    }).then(res => res.json()).then(data => {
+      if (data.status === 'ok') {
+        linha.children[1].innerText = `R$ ${novoDesconto}`;
+        linha.children[2].innerText = `${formatarData(novoInicio)} a ${formatarData(novoFim)}`;
+      } else alert("Erro: " + data.mensagem);
+    });
+  }
+});
+
+function formatarData(data) {
+  const [ano, mes, dia] = data.split("-");
+  return `${dia}/${mes}`;
+}
+
+function reverterData(data) {
+  const [dia, mes] = data.split("/");
+  const ano = new Date().getFullYear();
+  return `${ano}-${mes}-${dia}`;
+}
+
+function getCookie(name) {
+  const cookies = document.cookie.split(';');
+  for (const c of cookies) {
+    const [key, value] = c.trim().split('=');
+    if (key === name) return decodeURIComponent(value);
+  }
+}
+
+</script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>

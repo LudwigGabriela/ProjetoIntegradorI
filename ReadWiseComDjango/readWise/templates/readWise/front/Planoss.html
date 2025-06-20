@@ -38,7 +38,7 @@
           <li>Romances do momento</li>
           <li>10 livros disponíveis por mês</li>
         </ul>
-        <p class="preco">R$ 19,90</p>
+        <p class="preco">R$ 9,90</p>
         <a href="{% url 'pagamento' %}" class="btn-assinar">Assinar</a>
       </div>
 
@@ -48,7 +48,7 @@
           <li>Fantasias do momento</li>
           <li>15 livros disponíveis por mês</li>
         </ul>
-        <p class="preco">R$ 29,90</p>
+        <p class="preco">R$ 15,90</p>
         <a href="{% url 'pagamento' %}" class="btn-assinar">Assinar</a>
       </div>
 
@@ -58,7 +58,7 @@
           <li>Romance Policial e Suspenses do momento</li>
           <li>10 livros disponíveis por mês</li>
         </ul>
-        <p class="preco">R$ 19,90</p>
+        <p class="preco">R$ 9,90</p>
         <a href="{% url 'pagamento' %}" class="btn-assinar">Assinar</a>
       </div>
 
@@ -68,7 +68,7 @@
           <li>Lançamentos acadêmicos</li>
           <li>15 livros disponíveis por mês</li>
         </ul>
-        <p class="preco">R$ 39,90</p>
+        <p class="preco">R$ 10,90</p>
         <a href="{% url 'pagamento' %}" class="btn-assinar">Assinar</a>
       </div>
 
@@ -78,11 +78,38 @@
           <li>Variedade de gêneros</li>
           <li>24 livros disponíveis por mês</li>
         </ul>
-        <p class="preco">R$ 54,90</p>
+        <p class="preco">R$ 18,90</p>
         <a href="{% url 'pagamento' %}" class="btn-assinar">Assinar</a>
       </div>
     </section>
   </main>
+
+  <section class="planos" id="planos-container"></section>
+
+{% comment %} <script>
+  fetch("/api/planos/")
+    .then(response => response.json())
+    .then(planos => {
+      const container = document.getElementById("planos-container");
+      container.innerHTML = "";
+
+      planos.forEach(plano => {
+        const div = document.createElement("div");
+        div.className = "plano";
+        div.innerHTML = `
+          <h2>${plano.nome}</h2>
+          <ul>
+            <li>${plano.generos}</li>
+            <li>${plano.quantidade_livros} livros disponíveis por mês</li>
+          </ul>
+          <p class="preco">R$ ${parseFloat(plano.preco).toFixed(2)}</p>
+          <a href="/pagamento" class="btn-assinar">Assinar</a>
+        `;
+        container.appendChild(div);
+      });
+    });
+</script> {% endcomment %}
+
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>

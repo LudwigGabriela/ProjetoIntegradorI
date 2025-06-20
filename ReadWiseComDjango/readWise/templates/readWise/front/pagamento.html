@@ -114,47 +114,47 @@
     <main>
         <div class="pagamento-container">
         <h2>Pagamento</h2>
-        <form id="formPagamento">
-            <!-- Login do Usuário -->
-            <label for="loginUsuario" id="loginUsuario">Email cadastrado</label>
-            <input type="email" id="loginUsuario" placeholder="Seu email" required>
+        <form id="formPagamento" method="POST">
+      {% csrf_token %}
+      
+      <!-- Campos do cliente -->
+      <label for="nomeCliente">Nome Completo</label>
+      <input type="text" id="nomeCliente" name="nomeCliente" placeholder="Seu nome" required>
+      
+      <label for="clienteCPF">CPF</label>
+      <input type="text" id="clienteCPF" name="clienteCPF" maxlength="11" placeholder="000.000.000-00" required>
 
-            <label for="loginUsuario" id="senhaUsuario">Senha cadastrada</label>
-            <input type="password" id="senhaUsuario" placeholder="Seu senha" required>
+      <!-- Dados do Cartão (fictícios) -->
+      <label for="nomeCartao">Nome no Cartão</label>
+      <input type="text" name="nomeCartao" id="nomeCartao" placeholder="Nome no cartão" required>
+      
+      <label for="numeroCartao">Número do Cartão</label>
+      <input type="text" name="numeroCartao" id="numeroCartao" placeholder="Número do cartão" maxlength="16" required>
+      
+      <label for="valiCartao">Validade (MM/AA)</label>
+      <input type="month" name="valiCartao" id="valiCartao" required>
 
-            <!-- Dados do Cliente -->
-            <label for="clienteNome" id="nomeCliente">Nome Completo</label>
-            <input type="text" id="nomeCliente" placeholder="Seu nome" required>
-            
-            <label for="clienteCPF" id="clienteCPF">CPF</label>
-            <input type="text" id="clienteCPF" maxlength="11" placeholder="000.000.000-00" required>
+      <label for="cvvCartao">CVV</label>
+      <input type="text" id="cvvCartao" name="cvvCartao" placeholder="CVV" maxlength="3" required>
 
-            <!-- Dados do Cartão -->
-            <label for="nomeCartao" id="nomeCartao">Nome no Cartão</label>
-            <input type="text" name="nomeCartao" id="nomeCartao" placeholder="Nome contido no cartão" required>
-            
-            <label for="numeroCartao" id="numeroCartao">Número do Cartão</label>
-            <input type="text" name="numeroCartao" id="numeroCartao" placeholder="Número do cartão" maxlength="16" required>
-            
-            <label for="validade" id="valiCartao">Validade (MM/AA)</label>
-            <input type="date" name="valiCartao" id="valiCartao" placeholder="Data de validade do cartão" maxlength="5" required>
+      <!-- Botões -->
+      <button type="submit" class="btn-pagar">PAGAR</button>
+      <button type="reset" class="btn-cancelar">Cancelar</button>
+    </form>
+        {% if messages %}
+      <div class="mensagem">
+        {% for message in messages %}
+          <p style="color: {% if message.tags == 'success' %}green{% else %}red{% endif %};">
+            {{ message }}
+          </p>
+        {% endfor %}
+      </div>
+    {% endif %}
 
-            <label for="cvv" id="cvvCartao">CVV</label>
-            <input type="text" id="cvvCartao" name="cvvCartao" placeholder="CVV do cartão" maxlength="3" required>
-            
-            <div>
-                <button type="submit" class="btn-pagar">PAGAR</button>
-                <button type="reset" class="btn-cancelar">Cancelar</button>
-            </div>
-            
-        </form>
-        <div class="mensagem" id="mensagem"></div>
-        </div>
-
-
-        <div class="cancelar">
-            <a href="{% url 'carrinho' %}">Cancelar e voltar</a>
-        </div>
+    <!-- Cancelar link -->
+    <div class="cancelar">
+      <a href="{% url 'carrinho' %}">Cancelar e voltar</a>
+    </div>
     </main>
     
 

@@ -1,26 +1,29 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  {% load static %}
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrinho</title>
+  <title>Biblioteca</title>
 
-  <!-- Fonte Raleway -->
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Bootstrap RTL -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.rtl.min.css" integrity="sha384-q8+l9TmX3RaSz3HKGBmqP2u5MkgeN7HrfOJBLcTgZsQsbrx8WqqxdA5PuwUV9WIx" crossorigin="anonymous">
-
-  <!-- Tailwind via CDN (opcional para utilitários adicionais) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Ícones Bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            raleway: ['Raleway', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
     body {
-      background-image: url('fundo.jpg');
+      background-image: url('fundo.jpg'); 
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -29,97 +32,111 @@
 
     .cabecalho {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 8px;
       border-bottom: 2px solid #8B4513;
-      padding-bottom: 10px;
-      margin: 20px 10px;
+      padding: 20px 30px 10px 30px;
+      margin-bottom: 20px;
+      width: 100%;
     }
 
-    .titulo-site {
+    .cabecalho h1 {
       font-style: italic;
-      font-weight: bold;
-      font-size: 1.8rem;
+      font-weight: 700;
+      font-size: 1.75rem;
+      margin: 0;
       display: flex;
       align-items: center;
       gap: 8px;
-      margin: 0;
     }
 
-    .titulo-site img {
+    .cabecalho h1 span {
+      font-weight: 400;
+    }
+
+    .cabecalho img {
       width: 24px;
-      height: 24px;
+      height: auto;
+    }
+
+    .content {
+      background-color: #fff;
+      padding: 0;
     }
   </style>
 </head>
-<body class="text-black">
 
-  <!-- Cabeçalho -->
-  <div class="cabecalho">
-    <h1 class="titulo-site">
-      <i>READ</i>
-      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="book">
-      <i>WISE</i>
-    </h1>
-  </div>
+<body class="font-raleway text-black">
 
-  <!-- Topo com título e usuário -->
-  <div class="flex justify-between items-center px-6 py-4">
-    <h1 class="text-2xl font-bold bg-[#678133] px-4 py-2 rounded-full shadow-md text-white">Carrinho</h1>
-    <div class="flex items-center gap-4">
-      <span class="text-black font-semibold">Usuário</span>
-      <img src="usuario.jpg" alt="Foto do usuário" class="w-8 h-8 rounded-full object-cover shadow">
+  <div class="content">
+    <div class="cabecalho">
+      <h1>
+        <i>READ</i>
+        <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="book">
+        <i>WISE</i>
+      </h1>
     </div>
   </div>
 
-  <!-- Lista de livros -->
+  <div class="absolute top-4 right-6 z-50">
+    <a href="{% url 'usuario' %}" class="flex items-center gap-2 text-lg font-semibold text-black bg-white px-4 py-2 rounded shadow hover:text-amber-700 transition">
+      <span>Minha Conta</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+      </svg>
+    </a>
+  </div>
+
+  
+  <!-- Título Biblioteca -->
+  <div class="px-6 mt-12">
+    <h2 class="text-5xl font-extrabold text-amber-900 italic border-l-8 border-amber-700 pl-4">Carrinho</h2>
+  </div>
+
+<!-- Lista de livros no carrinho -->
   <div class="w-3/4 grid grid-cols-3 gap-6 ml-10 mt-4">
-    <div class="flex flex-col items-center">
-      <div class="w-20 h-32 bg-red-500 rounded"></div>
-      <span class="mt-2 font-semibold">LIVRO 1</span>
-      <button class="text-danger mt-1"><i class="bi bi-trash"></i></button>
-    </div>
-    <div class="flex flex-col items-center">
-      <div class="w-20 h-32 bg-blue-400 rounded"></div>
-      <span class="mt-2 font-semibold">LIVRO 1</span>
-      <button class="text-danger mt-1"><i class="bi bi-trash"></i></button>
-    </div>
-    <div class="flex flex-col items-center justify-center text-center">
-      <button class="bg-danger text-white rounded-circle w-10 h-10 mb-2">+</button>
-      <span class="font-semibold">ADICIONAR ITENS</span>
-    </div>
+    {% for item in itens %}
+      <div class="flex flex-col items-center bg-white rounded shadow p-3">
+        <img src="{{ item.ebook.capa.url }}" class="w-20 h-32 object-cover rounded" alt="{{ item.ebook.titulo }}">
+        <span class="mt-2 font-semibold text-center">{{ item.ebook.titulo }}</span>
+        <form method="POST" action="{% url 'remover_do_carrinho' item.ebook.id %}">
+          {% csrf_token %}
+          <button class="text-danger mt-2" type="submit" title="Remover"><i class="bi bi-trash fs-5"></i></button>
+        </form>
+      </div>
+    {% empty %}
+      <p class="text-center col-span-3 font-medium text-lg bg-white p-4 rounded shadow">Seu carrinho está vazio.</p>
+    {% endfor %}
   </div>
+
+  <!-- Total -->
+  {% if itens %}
+  <div class="text-end px-6 mt-6">
+    <h4 class="fw-bold text-xl bg-white inline-block px-4 py-2 rounded shadow">Total: R$ {{ total|floatformat:2 }}</h4>
+  </div>
+  {% endif %}
 
   <!-- Rodapé com botões -->
   <div class="flex justify-between items-center px-6 mt-10">
-    <button class="text-primary d-flex align-items-center gap-2">
-        <a href="{% url 'catalogo' %}"><span class="fs-5">&#8592;</span> CONTINUAR COMPRANDO</a>
-    </button>
-    <div class="d-flex gap-4">
-      <div class="d-flex align-items-center gap-2">
-        <i class="bi bi-question-circle-fill"></i>
-        <span>AJUDA</span>
-      </div>
-      <div class="d-flex align-items-center gap-2">
-        <i class="bi bi-telephone-fill"></i>
-        <span>SAC</span>
-      </div>
+      <a href="{% url 'catalogo' %}" class="fixed bottom-6 left-6     bg-white text-primary d-flex align-items-center gap-2 px-4 py-2 rounded shadow hover:text-amber-700 transition">
+        <span class="fs-5">&#8592;</span> CONTINUAR COMPRANDO
+      </a>
+  </div>
     </div>
-    <button class="text-success d-flex align-items-center gap-2">
-        <a href="{% url 'pagamento' %}">FINALIZAR PEDIDO <span class="bg-success text-white rounded-circle px-2">&#10004;</span></a>
-    </button>
+    {% if itens %}
+    <a href="{% url 'pagamento' %}" class="text-success d-flex align-items-center gap-2">
+      FINALIZAR PEDIDO <span class="bg-success text-white rounded-circle px-2">&#10004;</span>
+    </a>
+    {% endif %}
   </div>
 
-  <!-- Sair botão -->
-  <div class="position-absolute bottom-4 end-0 me-5 mb-4 d-flex align-items-center gap-2">
+  <!-- Botão Sair -->
+  <div class="position-absolute bottom-6 end-6 d-flex align-items-center gap-3">
     <a href="{% url 'catalogo' %}"><button class="text-danger fw-bold fs-5">SAIR</button></a>
-    
-    <div class="border border-2 border-danger rounded-circle d-flex align-items-center justify-content-center text-danger" style="width: 24px; height: 24px;">⏻</div>
   </div>
 
-  <!-- Bootstrap JS -->
+  
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
-
 </body>
 </html>

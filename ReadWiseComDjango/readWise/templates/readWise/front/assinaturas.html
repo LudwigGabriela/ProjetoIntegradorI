@@ -189,74 +189,89 @@
       </form>
     </div>
 
-    <!-- Tabela de planos existentes -->
-    <h2 class="titulo-secao">Planos Existentes</h2>
-
-    <table class="user-table">
-      <thead>
-        <tr>
-          <th>Nome do Plano</th>
-          <th>Livros por Mês</th>
-          <th>Gêneros</th>
-          <th>Preço</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody id="tabela-planos">
-        <tr>
-          <td>Nome do Plano</td>
-          <td>Quant/mês</td>
-          <td>Gênero do ebook</td>
-          <td>R$</td>
-          <td class="actions">
-            <button class="delete-btn">Excluir</button>
-            <button class="edit-btn">Editar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="tabela-wrapper">
+      <h2 class="titulo-secao">Planos Cadastrados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Livros</th>
+            <th>Gêneros</th>
+            <th>Preço</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaPlanos"></tbody>
+      </table>
+    </div>
   </div>
 
-  <!-- JavaScript funcional -->
   <script>
-    document.getElementById("form-plano").addEventListener("submit", function (event) {
-      event.preventDefault();
+    async function carregarPlanos() {
+      const res = await fetch('/api/planos/');
+      const planos = await res.json();
+      const tabela = document.getElementById('tabelaPlanos');
+      tabela.innerHTML = '';
 
-      const nomePlano = this.nome_plano.value.trim();
-      const quantidade = this.quantidade.value.trim();
-      const generos = this.generos.value.trim();
-      const preco = this.preco.value.trim();
+      planos.forEach(plano => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${plano.nome}</td>
+          <td>${plano.quantidade_livros}</td>
+          <td>${plano.generos}</td>
+          <td>R$ ${plano.preco}</td>
+          <td class="acoes">
+            <button onclick="editarPlano(${plano.id}, '${plano.nome}', '${plano.quantidade_livros}', '${plano.generos}', '${plano.preco}')">Editar</button>
+            <button class="btn btn-danger btn-sm" onclick="excluirPlano(${plano.id})">Excluir</button>
+          </td>
+        `;
+        tabela.appendChild(tr);
+      });
+    }
 
-      if (!nomePlano || !quantidade || !generos || !preco) {
-        alert("Preencha todos os campos!");
-        return;
+    async function excluirPlano(id) {
+      if (confirm('Deseja excluir este plano?')) {
+        await fetch(`/api/planos/excluir/${id}/`, { method: 'DELETE' });
+        carregarPlanos();
       }
+    }
 
-      const novaLinha = document.createElement("tr");
-      novaLinha.innerHTML = `
-        <td>${nomePlano}</td>
-        <td>${quantidade}</td>
-        <td>${generos}</td>
-        <td>R$ ${parseFloat(preco).toFixed(2)}</td>
-        <td class="actions">
-          <button class="delete-btn">Excluir</button>
-          <button class="edit-btn">Editar</button>
-        </td>
-      `;
+    function editarPlano(id, nome, quantidade, generos, preco) {
+      document.getElementById('planoId').value = id;
+      document.getElementById('nome_plano').value = nome;
+      document.getElementById('quantidade').value = quantidade;
+      document.getElementById('generos').value = generos;
+      document.getElementById('preco').value = preco;
+    }
 
-      document.getElementById("tabela-planos").appendChild(novaLinha);
-      this.reset();
+    document.getElementById('formPlano').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('planoId').value;
+      const nome_plano = document.getElementById('nome_plano').value;
+      const quantidade = document.getElementById('quantidade').value;
+      const generos = document.getElementById('generos').value;
+      const preco = document.getElementById('preco').value;
+
+      const data = { nome_plano, quantidade, generos, preco };
+      const url = id ? `/api/planos/editar/${id}/` : '/api/planos/cadastrar';
+      const method = id ? 'PUT' : 'POST';
+
+      await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      document.getElementById('formPlano').reset();
+      document.getElementById('planoId').value = '';
+      carregarPlanos();
     });
 
-    document.getElementById("tabela-planos").addEventListener("click", function (event) {
-      if (event.target.classList.contains("delete-btn")) {
-        const linha = event.target.closest("tr");
-        if (confirm("Tem certeza que deseja excluir este plano?")) {
-          linha.remove();
-        }
-      }
-    });
+    carregarPlanos();
   </script>
+
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
